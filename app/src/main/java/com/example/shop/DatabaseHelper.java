@@ -169,9 +169,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return simpleCursorAdapter;
     }
 
-    //TODO add other database management methods
+    public Cursor getSellerProducts(Integer sellerID){
+        Cursor cursor;
+        SQLiteDatabase database = this.getReadableDatabase();
 
-
+        String query = "SELECT * FROM product WHERE seller_ID =" + "'" + String.valueOf(sellerID) + "'";
+        cursor = database.rawQuery(query, null);
+        return cursor;
+    }
 
 
 }
