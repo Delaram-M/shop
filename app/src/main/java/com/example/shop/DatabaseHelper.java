@@ -60,13 +60,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 + "VALUES ('Electronics');";
         database.execSQL(query);
         query = "INSERT INTO category (name) "
-                + "VALUES ('Home and Kitchen');";
+                + "VALUES ('Home & Kitchen');";
         database.execSQL(query);
         query = "INSERT INTO category (name) "
                 + "VALUES ('Books');";
         database.execSQL(query);
         query = "INSERT INTO category (name) "
-                + "VALUES ('Fashion and Beauty');";
+                + "VALUES ('Fashion & Beauty');";
         database.execSQL(query);
         query = "INSERT INTO category (name) "
                 + "VALUES ('Arts');";
@@ -75,7 +75,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 + "VALUES ('Games');";
         database.execSQL(query);
         query = "INSERT INTO category (name) "
-                + "VALUES ('Industrial and Scientific');";
+                + "VALUES ('Industrial & Scientific');";
         database.execSQL(query);query = "INSERT INTO category (name) "
                 + "VALUES ('Others');";
         database.execSQL(query);

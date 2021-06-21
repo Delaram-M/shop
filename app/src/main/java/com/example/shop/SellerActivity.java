@@ -1,6 +1,7 @@
 package com.example.shop;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
@@ -23,17 +24,18 @@ import java.util.Locale;
 
 public class SellerActivity extends AppCompatActivity {
 
-    RecyclerView recyclerView;
-    FloatingActionButton addButton;
+    private RecyclerView recyclerView;
+    private FloatingActionButton addButton;
 
-    Integer sellerID;
-    DatabaseHelper databaseHelper;
-    Cursor sellerProductsCursor;
-    ArrayList<Uri> productImageURIs;
-    ArrayList<String> productNames;
-    ArrayList<String> productCategories;
-    ArrayList<Double> productPrices;
-    ArrayList<String> productSellerUsernames;
+    private Integer sellerID;
+    private DatabaseHelper databaseHelper;
+    private Cursor sellerProductsCursor;
+    private CustomAdapter customAdapter;
+    private ArrayList<Uri> productImageURIs;
+    private ArrayList<String> productNames;
+    private ArrayList<String> productCategories;
+    private ArrayList<Double> productPrices;
+    private ArrayList<String> productSellerUsernames;
 
 
     @Override
@@ -58,13 +60,19 @@ public class SellerActivity extends AppCompatActivity {
             }
         });
 
-
         productImageURIs = new ArrayList<>();
         productNames = new ArrayList<>();
         productCategories =new ArrayList<>();
         productPrices = new ArrayList<>();
         productSellerUsernames = new ArrayList<>();
         storeSellerProductsData();
+        customAdapter = new CustomAdapter(SellerActivity.this,productImageURIs, productNames,
+                productCategories, productPrices,productSellerUsernames);
+        recyclerView.setAdapter(customAdapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager((SellerActivity.this)));
+
+
+
 
 
 
@@ -87,8 +95,8 @@ public class SellerActivity extends AppCompatActivity {
                 productSellerUsernames.add(databaseHelper.getSellerUsername(sellerProductsCursor.getInt(2)));
             }
         }
-
     }
+
 
 
 
