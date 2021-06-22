@@ -31,6 +31,7 @@ public class SellerActivity extends AppCompatActivity {
     private DatabaseHelper databaseHelper;
     private Cursor sellerProductsCursor;
     private CustomAdapter customAdapter;
+    private ArrayList<Integer> productIDs;
     private ArrayList<Uri> productImageURIs;
     private ArrayList<String> productNames;
     private ArrayList<String> productCategories;
@@ -60,13 +61,14 @@ public class SellerActivity extends AppCompatActivity {
             }
         });
 
+        productIDs = new ArrayList<>();
         productImageURIs = new ArrayList<>();
         productNames = new ArrayList<>();
         productCategories =new ArrayList<>();
         productPrices = new ArrayList<>();
         productSellerUsernames = new ArrayList<>();
         storeSellerProductsData();
-        customAdapter = new CustomAdapter(SellerActivity.this,productImageURIs, productNames,
+        customAdapter = new CustomAdapter(SellerActivity.this, productIDs, productImageURIs, productNames,
                 productCategories, productPrices,productSellerUsernames);
         recyclerView.setAdapter(customAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager((SellerActivity.this)));
@@ -88,6 +90,7 @@ public class SellerActivity extends AppCompatActivity {
     public void storeSellerProductsData(){
         if(sellerProductsCursor.getCount() != 0){
             while (sellerProductsCursor.moveToNext()){
+                productIDs.add(sellerProductsCursor.getInt(0));
                 productImageURIs.add(Uri.parse(sellerProductsCursor.getString(5)));
                 productNames.add(sellerProductsCursor.getString(3));
                 productCategories.add(databaseHelper.getCategoryName(sellerProductsCursor.getInt(1)));

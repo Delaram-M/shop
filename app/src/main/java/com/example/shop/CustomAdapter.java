@@ -2,11 +2,13 @@ package com.example.shop;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -17,6 +19,7 @@ import java.util.ArrayList;
 public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder> {
 
     private Context context;
+    private ArrayList<Integer> productIDs;
     private ArrayList<Uri> productImageURIs;
     private ArrayList<String> productNames;
     private ArrayList<String> productCategories;
@@ -37,6 +40,8 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
         private TextView price;
         private TextView seller;
 
+        LinearLayout linearLayout;
+
         public ViewHolder(View view) {
             super(view);
             // Define click listener for the ViewHolder's View
@@ -45,6 +50,8 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
             category = view.findViewById(R.id.product_category);
             price = view.findViewById(R.id.product_price);
             seller = view.findViewById(R.id.product_seller);
+
+            linearLayout = view.findViewById(R.id.product_row_linear_layout);
         }
 
 //        public TextView getTextView() {
@@ -58,10 +65,12 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
      //* @param dataSet String[] containing the data to populate views to be used
      * by RecyclerView.
      */
-    public CustomAdapter(Context context, ArrayList<Uri> productImageURIs,
-                         ArrayList<String> productNames, ArrayList<String> productCategories,
-                         ArrayList<Double> productPrices, ArrayList<String> productSellerUsernames){
+    public CustomAdapter(Context context, ArrayList<Integer> productIDs,
+                         ArrayList<Uri> productImageURIs, ArrayList<String> productNames,
+                         ArrayList<String> productCategories, ArrayList<Double> productPrices,
+                         ArrayList<String> productSellerUsernames){
         this.context = context;
+        this.productIDs = productIDs;
         this.productImageURIs = productImageURIs;
         this.productNames = productNames;
         this.productCategories = productCategories;
@@ -92,6 +101,21 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
         viewHolder.category.setText(productCategories.get(position));
         viewHolder.price.setText(String.valueOf(productPrices.get(position)) + " $");
         viewHolder.seller.setText(productSellerUsernames.get(position));
+
+        viewHolder.linearLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, DeleteUpdateProductActivity.class);
+                intent.putExtra("productID", productIDs.get(position));
+                intent.putExtra("imageURIString", productImageURIs.get(position).toString());
+                intent.putExtra("name", productNames.get(position));
+                intent.putExtra("category", productCategories.get(position));
+                intent.putExtra("price", productPrices.get(position));
+                intent.putExtra("username", productSellerUsernames.get(position));
+                context.startActivity(intent);
+
+            }
+        });
     }
 
     // Return the size of your dataset (invoked by the layout manager)

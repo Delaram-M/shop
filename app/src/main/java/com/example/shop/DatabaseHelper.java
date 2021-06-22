@@ -176,6 +176,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return categoryName;
     }
 
+    public Integer getCategoryID(String categoryName){
+        SQLiteDatabase database = this.getReadableDatabase();
+        String query = "SELECT * FROM category WHERE name = " + "'" + categoryName + "';";
+        Cursor cursor = database.rawQuery(query, null);
+        cursor.moveToFirst();
+        Integer categoryID = cursor.getInt(0);
+        cursor.close();
+        return categoryID;
+    }
+
+
     public SimpleCursorAdapter getCategoriesAdapter(){
         SimpleCursorAdapter simpleCursorAdapter;
         SQLiteDatabase database = this.getReadableDatabase();
@@ -197,6 +208,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cursor = database.rawQuery(query, null);
         return cursor;
     }
+
+
+
+    //TODO add other database management methods
 
 
 }

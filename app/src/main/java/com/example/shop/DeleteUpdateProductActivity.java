@@ -13,38 +13,51 @@ import android.widget.ImageView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.Spinner;
 
-public class AddProductActivity extends AppCompatActivity {
+public class DeleteUpdateProductActivity extends AppCompatActivity {
 
     int SELECT_PICTURE = 200;
 
+    Integer productID;
     Integer sellerID;
     Integer categoryID;
     Uri imageURI;
+    String productName;
+    Double productPrice;
+
     EditText name;
     EditText price;
 
     Spinner spinner;
     ImageView imageView;
-    Button addButton;
+    Button updateButton;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_product);
+        setContentView(R.layout.activity_delete_update_product);
         Intent intent = getIntent();
-        sellerID = intent.getIntExtra("sellerID", 0);
-
-
-        name = findViewById(R.id.add_name);
-        price = findViewById(R.id.add_price);
-
-
         DatabaseHelper databaseHelper = new DatabaseHelper(this);
 
-        spinner = findViewById(R.id.add_category);
+        productID = intent.getIntExtra("productID",0);
+        imageURI = Uri.parse(intent.getStringExtra("imageURIString"));
+        sellerID = databaseHelper.getSellerID(intent.getStringExtra("username"));
+        categoryID = databaseHelper.getCategoryID(intent.getStringExtra("category"));
+        productName = intent.getStringExtra("name");
+        productPrice = intent.getDoubleExtra("price", 0);
+
+
+        name = findViewById(R.id.update_delete_name);
+        price = findViewById(R.id.update_delete_price);
+
+        name.setText(productName);
+        price.setText(String.valueOf(productPrice));
+
+
+        spinner = findViewById(R.id.update_delete_category);
         SimpleCursorAdapter simpleCursorAdapter = databaseHelper.getCategoriesAdapter();
         spinner.setAdapter(simpleCursorAdapter);
+        spinner.setSelection(categoryID - 1);
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id){
@@ -54,7 +67,8 @@ public class AddProductActivity extends AppCompatActivity {
         });
 
 
-        imageView = findViewById(R.id.add_image);
+        imageView = findViewById(R.id.update_delete_image);
+        imageView.setImageURI(imageURI);
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -67,14 +81,12 @@ public class AddProductActivity extends AppCompatActivity {
 
 
 
-        addButton = findViewById(R.id.add_add);
-        addButton.setOnClickListener(new View.OnClickListener() {
+        updateButton = findViewById(R.id.update_delete_update);
+        updateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //TODO check for errors
-                String name = AddProductActivity.this.name.getText().toString().trim();
-                Double price = Double.valueOf(AddProductActivity.this.price.getText().toString().trim());
-                databaseHelper.addProduct(categoryID,sellerID,name,price,imageURI);
+
             }
         });
 
@@ -98,11 +110,8 @@ public class AddProductActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Intent backIntent = new Intent(AddProductActivity.this, SellerActivity.class);
+        Intent backIntent = new Intent(DeleteUpdateProductActivity.this, SellerActivity.class);
         backIntent.putExtra("sellerID", sellerID);
         startActivity(backIntent);
     }
-
-
 }
-
