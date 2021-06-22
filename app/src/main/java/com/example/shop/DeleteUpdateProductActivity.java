@@ -85,8 +85,10 @@ public class DeleteUpdateProductActivity extends AppCompatActivity {
         updateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO check for errors
-
+                productName = name.getText().toString().trim();
+                productPrice = Double.valueOf(price.getText().toString().trim());
+                databaseHelper.updateProduct(productID, categoryID, sellerID, productName,
+                        productPrice, imageURI);
             }
         });
 

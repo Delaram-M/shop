@@ -134,6 +134,24 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             Toast.makeText(context, "product added successfully", Toast.LENGTH_LONG).show();
     }
 
+    public void updateProduct(Integer productID, Integer categoryID, Integer sellerID, String name, Double price, Uri imageURI){
+        SQLiteDatabase database = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("category_ID", categoryID);
+        contentValues.put("seller_ID", sellerID);
+        contentValues.put("name", name);
+        contentValues.put("price", price);
+        contentValues.put("image_URI", imageURI.toString());
+        long result = database.update("product", contentValues,
+                "product_ID =" + productID , null);
+        if(result == -1)
+            Toast.makeText(context, "failed to update product", Toast.LENGTH_LONG).show();
+        else
+            Toast.makeText(context, "product updated successfully", Toast.LENGTH_LONG).show();
+    }
+
+
+
     public void addCategory(String name){
         SQLiteDatabase database = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -211,7 +229,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
 
-    //TODO add other database management methods
+
+
+
+
 
 
 }
