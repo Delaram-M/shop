@@ -1,7 +1,9 @@
 package com.example.shop;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -27,9 +29,11 @@ public class DeleteUpdateProductActivity extends AppCompatActivity {
     EditText name;
     EditText price;
 
+    DatabaseHelper databaseHelper;
     Spinner spinner;
     ImageView imageView;
     Button updateButton;
+    Button deleteButton;
 
 
     @Override
@@ -37,7 +41,7 @@ public class DeleteUpdateProductActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_delete_update_product);
         Intent intent = getIntent();
-        DatabaseHelper databaseHelper = new DatabaseHelper(this);
+        databaseHelper = new DatabaseHelper(this);
 
         productID = intent.getIntExtra("productID",0);
         imageURI = Uri.parse(intent.getStringExtra("imageURIString"));
@@ -92,6 +96,14 @@ public class DeleteUpdateProductActivity extends AppCompatActivity {
             }
         });
 
+        deleteButton = findViewById(R.id.update_delete_delete);
+        deleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                confirmDialogue();
+            }
+        });
+
 
     }
 
@@ -109,6 +121,30 @@ public class DeleteUpdateProductActivity extends AppCompatActivity {
             }
         }
     }
+
+
+    private void confirmDialogue(){
+        productName = name.getText().toString().trim();
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Delete Product");
+        builder.setMessage("Are you sure you want to delete " + productName + " ?");
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                databaseHelper.deleteProduct(productID);
+                onBackPressed();
+            }
+        });
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+        builder.create().show();
+    }
+
+
 
     @Override
     public void onBackPressed() {

@@ -150,6 +150,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             Toast.makeText(context, "product updated successfully", Toast.LENGTH_LONG).show();
     }
 
+    public void deleteProduct(Integer productID){
+        SQLiteDatabase database = this.getWritableDatabase();
+        long result = database.delete("product", "product_ID =" + productID, null);
+        if(result == -1)
+            Toast.makeText(context, "failed to delete product", Toast.LENGTH_LONG).show();
+        else
+            Toast.makeText(context, "product deleted successfully", Toast.LENGTH_LONG).show();
+    }
+
 
 
     public void addCategory(String name){
