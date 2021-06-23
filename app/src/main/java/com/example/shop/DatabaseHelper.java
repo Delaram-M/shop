@@ -183,6 +183,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return sellerID;
     }
 
+    public Integer getBuyerID(String username){
+        SQLiteDatabase database = this.getReadableDatabase();
+        String query = "SELECT * FROM buyer WHERE username = " + "'" + username + "';";
+        Cursor cursor = database.rawQuery(query, null);
+        cursor.moveToFirst();
+        Integer buyerID = cursor.getInt(0);
+        cursor.close();
+        return buyerID;
+    }
+
     public String getSellerUsername(Integer sellerID){
         SQLiteDatabase database = this.getReadableDatabase();
         String query = "SELECT * FROM seller WHERE seller_ID = " + "'" + sellerID + "';";

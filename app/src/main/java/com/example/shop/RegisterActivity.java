@@ -12,6 +12,8 @@ import android.widget.TextView;
 
 public class RegisterActivity extends AppCompatActivity {
 
+    //TODO add private/public access modifiers
+
     EditText username;
     EditText password;
     EditText phoneNumber;
@@ -43,8 +45,12 @@ public class RegisterActivity extends AppCompatActivity {
                 String username = RegisterActivity.this.username.getText().toString().trim();
                 String password = RegisterActivity.this.password.getText().toString().trim();
                 Integer phoneNumber = Integer.parseInt(RegisterActivity.this.phoneNumber.getText().toString());
-                if(!roleSwitch.isChecked())
+                if(!roleSwitch.isChecked()) {
                     databaseHelper.addBuyer(username, password, phoneNumber);
+                    Intent intent = new Intent(RegisterActivity.this, BuyerActivity.class);
+                    intent.putExtra("buyerID", databaseHelper.getBuyerID(username));
+                    startActivity(intent);
+                }
                 else{
                     databaseHelper.addSeller(username, password, phoneNumber);
                     Intent intent = new Intent(RegisterActivity.this, SellerActivity.class);
