@@ -247,6 +247,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
 
+    public Cursor getAllProducts(){
+        Cursor cursor;
+        SQLiteDatabase database = this.getReadableDatabase();
+
+        String query = "SELECT * FROM product" ;
+        cursor = database.rawQuery(query, null);
+        return cursor;
+    }
+
 
 
 
