@@ -10,6 +10,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
+import android.widget.SearchView;
 
 import java.util.ArrayList;
 
@@ -27,6 +28,8 @@ public class BuyerActivity extends AppCompatActivity {
     private ArrayList<String> productCategories;
     private ArrayList<Double> productPrices;
     private ArrayList<String> productSellerUsernames;
+
+    private SearchView searchView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +58,8 @@ public class BuyerActivity extends AppCompatActivity {
         recyclerView.setAdapter(buyerAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager((BuyerActivity.this)));
 
+        setUpSearch();
+
 
 
     }
@@ -67,15 +72,69 @@ public class BuyerActivity extends AppCompatActivity {
 
     public void storeProductsData(){
         if(productsCursor.getCount() != 0){
-            while (productsCursor.moveToNext()){
-                productIDs.add(productsCursor.getInt(0));
-                productImageURIs.add(Uri.parse(productsCursor.getString(5)));
-                productNames.add(productsCursor.getString(3));
-                productCategories.add(databaseHelper.getCategoryName(productsCursor.getInt(1)));
-                productPrices.add(productsCursor.getDouble(4));
-                productSellerUsernames.add(databaseHelper.getSellerUsername(productsCursor.getInt(2)));
-            }
+            productsCursor.moveToFirst();
+                do {
+                    productIDs.add(productsCursor.getInt(0));
+                    productImageURIs.add(Uri.parse(productsCursor.getString(5)));
+                    productNames.add(productsCursor.getString(3));
+                    productCategories.add(databaseHelper.getCategoryName(productsCursor.getInt(1)));
+                    productPrices.add(productsCursor.getDouble(4));
+                    productSellerUsernames.add(databaseHelper.getSellerUsername(productsCursor.getInt(2)));
+                } while (productsCursor.moveToNext());
         }
+    }
+
+
+    private void setUpSearch(){
+        searchView = findViewById(R.id.buyer_search);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                filterProductsData(newText);
+                BuyerAdapter filteredAdapter = new BuyerAdapter(BuyerActivity.this,
+                        productIDs, productImageURIs, productNames, productCategories,
+                        productPrices,productSellerUsernames);
+                recyclerView.setAdapter(filteredAdapter);
+                recyclerView.setLayoutManager(new LinearLayoutManager((BuyerActivity.this)));
+                return false;
+            }
+        });
+
+
+    }
+
+
+
+    private void filterProductsData(String searchTerm){
+        productIDs.clear();
+        productImageURIs.clear();
+        productNames.clear();
+        productCategories.clear();
+        productPrices.clear();
+        productSellerUsernames.clear();
+        if(productsCursor.getCount() != 0){
+            productsCursor.moveToFirst();
+                do {
+                    if (productsCursor.getString(3).toLowerCase().trim().contains(searchTerm.toLowerCase().trim())) {
+                        productIDs.add(productsCursor.getInt(0));
+                        productImageURIs.add(Uri.parse(productsCursor.getString(5)));
+                        productNames.add(productsCursor.getString(3));
+                        productCategories.add(databaseHelper.getCategoryName(productsCursor.getInt(1)));
+                        productPrices.add(productsCursor.getDouble(4));
+                        productSellerUsernames.add(databaseHelper.getSellerUsername(productsCursor.getInt(2)));
+                    }
+                } while (productsCursor.moveToNext());
+
+        }
+        Log.d("test productNamesSize", String.valueOf(productNames.size()));
+        Log.d("test list size", String.valueOf(recyclerView.getChildCount()));
+        Log.d("test cursor size", String.valueOf(productsCursor.getCount()));
+
     }
 
 
