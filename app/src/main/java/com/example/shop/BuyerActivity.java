@@ -1,6 +1,7 @@
 package com.example.shop;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
@@ -19,6 +20,7 @@ public class BuyerActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private DatabaseHelper databaseHelper;
     private Cursor productsCursor;
+    private BuyerAdapter buyerAdapter;
     private ArrayList<Integer> productIDs;
     private ArrayList<Uri> productImageURIs;
     private ArrayList<String> productNames;
@@ -48,6 +50,10 @@ public class BuyerActivity extends AppCompatActivity {
 
         storeProductsData();
 
+        buyerAdapter = new BuyerAdapter(BuyerActivity.this, productIDs, productImageURIs, productNames,
+                productCategories, productPrices,productSellerUsernames);
+        recyclerView.setAdapter(buyerAdapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager((BuyerActivity.this)));
 
 
 

@@ -10,13 +10,14 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder> {
+public class BuyerAdapter extends RecyclerView.Adapter<BuyerAdapter.ViewHolder> {
 
     private Context context;
     private ArrayList<Integer> productIDs;
@@ -65,7 +66,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
      //* @param dataSet String[] containing the data to populate views to be used
      * by RecyclerView.
      */
-    public CustomAdapter(Context context, ArrayList<Integer> productIDs,
+    public BuyerAdapter(Context context, ArrayList<Integer> productIDs,
                          ArrayList<Uri> productImageURIs, ArrayList<String> productNames,
                          ArrayList<String> productCategories, ArrayList<Double> productPrices,
                          ArrayList<String> productSellerUsernames){
@@ -103,20 +104,12 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
         viewHolder.price.setText(String.valueOf(productPrices.get(position)) + " $");
         viewHolder.seller.setText(productSellerUsernames.get(position));
 
-        viewHolder.linearLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(context, DeleteUpdateProductActivity.class);
-                intent.putExtra("productID", productIDs.get(position));
-                intent.putExtra("imageURIString", productImageURIs.get(position).toString());
-                intent.putExtra("name", productNames.get(position));
-                intent.putExtra("category", productCategories.get(position));
-                intent.putExtra("price", productPrices.get(position));
-                intent.putExtra("username", productSellerUsernames.get(position));
-                context.startActivity(intent);
-
-            }
-        });
+//        viewHolder.linearLayout.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//            }
+//        });
     }
 
     // Return the size of your dataset (invoked by the layout manager)
