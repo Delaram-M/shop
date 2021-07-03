@@ -104,12 +104,19 @@ public class BuyerAdapter extends RecyclerView.Adapter<BuyerAdapter.ViewHolder> 
         viewHolder.price.setText(String.valueOf(productPrices.get(position)) + " $");
         viewHolder.seller.setText(productSellerUsernames.get(position));
 
-//        viewHolder.linearLayout.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//            }
-//        });
+        viewHolder.linearLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, ViewProductActivity.class);
+                intent.putExtra("productID", productIDs.get(position));
+                intent.putExtra("imageURIString", productImageURIs.get(position).toString());
+                intent.putExtra("name", productNames.get(position));
+                intent.putExtra("category", productCategories.get(position));
+                intent.putExtra("price", productPrices.get(position));
+                intent.putExtra("username", productSellerUsernames.get(position));
+                context.startActivity(intent);
+            }
+        });
     }
 
     // Return the size of your dataset (invoked by the layout manager)

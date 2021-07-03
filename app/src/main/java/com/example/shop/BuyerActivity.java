@@ -131,9 +131,6 @@ public class BuyerActivity extends AppCompatActivity {
                 } while (productsCursor.moveToNext());
 
         }
-        Log.d("test productNamesSize", String.valueOf(productNames.size()));
-        Log.d("test list size", String.valueOf(recyclerView.getChildCount()));
-        Log.d("test cursor size", String.valueOf(productsCursor.getCount()));
 
     }
 

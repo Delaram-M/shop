@@ -203,6 +203,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return sellerUsername;
     }
 
+    public Integer getSellerPhoneNumber(Integer sellerID){
+        SQLiteDatabase database = this.getReadableDatabase();
+        String query = "SELECT * FROM seller WHERE seller_ID = " + "'" + sellerID + "';";
+        Cursor cursor = database.rawQuery(query, null);
+        cursor.moveToFirst();
+        Integer sellerPhoneNumber = cursor.getInt(3);
+        cursor.close();
+        return sellerPhoneNumber;
+    }
+
     public String getCategoryName(Integer categoryID){
         SQLiteDatabase database = this.getReadableDatabase();
         String query = "SELECT * FROM category WHERE _id = " + "'" + categoryID + "';";

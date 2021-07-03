@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ViewProductActivity">
+
+    <ImageView
+        android:id="@+id/product_view_image"
+        android:layout_width="275dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="50dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_image_not_found" />
+
+    <TextView
+        android:id="@+id/product_view_name_word"
+        android:layout_width="65dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="40dp"
+        android:background="@color/primary_dark_color"
+        android:text="Name : "
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/product_view_image" />
+
+    <TextView
+        android:id="@+id/product_view_name"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="40dp"
+        android:background="@color/primary_light_color"
+        android:text="product name"
+        app:layout_constraintStart_toEndOf="@+id/product_view_name_word"
+        app:layout_constraintTop_toBottomOf="@+id/product_view_image" />
+
+    <TextView
+        android:id="@+id/product_view_category_word"
+        android:layout_width="65dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="24dp"
+        android:background="@color/primary_dark_color"
+        android:text="Category : "
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/product_view_name_word" />
+
+
+    <TextView
+        android:id="@+id/product_view_category"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:background="@color/primary_light_color"
+        android:text="product category"
+        app:layout_constraintStart_toEndOf="@+id/product_view_category_word"
+        app:layout_constraintTop_toBottomOf="@+id/product_view_name" />
+
+    <TextView
+        android:id="@+id/product_view_price_word"
+        android:layout_width="65dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="24dp"
+        android:background="@color/primary_dark_color"
+        android:text="Price ($) : "
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/product_view_category_word" />
+
+    <TextView
+        android:id="@+id/product_view_price"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:background="@color/primary_light_color"
+        android:text="product price"
+        app:layout_constraintStart_toEndOf="@+id/product_view_price_word"
+        app:layout_constraintTop_toBottomOf="@+id/product_view_category" />
+
+    <TextView
+        android:id="@+id/product_view_seller_word"
+        android:layout_width="65dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="24dp"
+        android:background="@color/primary_dark_color"
+        android:text="Seller : "
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/product_view_price_word" />
+
+    <TextView
+        android:id="@+id/product_view_seller_username"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:background="@color/primary_light_color"
+        android:text="prodcut seller"
+        app:layout_constraintStart_toEndOf="@+id/product_view_seller_word"
+        app:layout_constraintTop_toBottomOf="@+id/product_view_price" />
+
+    <Button
+        android:id="@+id/product_view_phone_number"
+        android:layout_width="150dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="28dp"
+        android:text="phone number"
+        android:textSize="8sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.613"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/product_view_seller_username" />
+</androidx.constraintlayout.widget.ConstraintLayout>
