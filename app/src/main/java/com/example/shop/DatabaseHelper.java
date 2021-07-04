@@ -267,6 +267,58 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
 
+    public boolean isSeller(String username){
+        SQLiteDatabase database = this.getReadableDatabase();
+        String query = "SELECT * FROM seller WHERE username = " + "'" + username + "';";
+        Cursor cursor = database.rawQuery(query, null);
+        if(cursor.getCount() != 0)
+            return true;
+        else
+            return false;
+    }
+
+    public boolean isBuyer(String username){
+        SQLiteDatabase database = this.getReadableDatabase();
+        String query = "SELECT * FROM buyer WHERE username = " + "'" + username + "';";
+        Cursor cursor = database.rawQuery(query, null);
+        if(cursor.getCount() != 0)
+            return true;
+        else
+            return false;
+    }
+
+    public Integer logInSeller(String username, String password){
+        SQLiteDatabase database = this.getReadableDatabase();
+        String query = "SELECT * FROM seller WHERE username = " + "'" + username + "'"
+                + "AND password = " + "'" + password + "';" ;
+        Cursor cursor = database.rawQuery(query, null);
+        if(cursor.getCount() == 0)
+            return 0;
+        else {
+            cursor.moveToFirst();
+            Integer sellerID = cursor.getInt(0);
+            cursor.close();
+            return sellerID;
+        }
+    }
+
+
+    public Integer logInBuyer(String username, String password){
+        SQLiteDatabase database = this.getReadableDatabase();
+        String query = "SELECT * FROM buyer WHERE username = " + "'" + username + "'"
+                + "AND password = " + "'" + password + "';" ;
+        Cursor cursor = database.rawQuery(query, null);
+        if(cursor.getCount() == 0)
+            return 0;
+        else {
+            cursor.moveToFirst();
+            Integer buyerID = cursor.getInt(0);
+            cursor.close();
+            return buyerID;
+        }
+    }
+
+
 
 
 

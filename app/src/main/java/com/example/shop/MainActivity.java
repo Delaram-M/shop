@@ -17,12 +17,16 @@ public class MainActivity extends AppCompatActivity {
     TextView error;
     Button registerButton;
 
+    DatabaseHelper databaseHelper;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        databaseHelper = new DatabaseHelper(this);
 
         registerButton = findViewById(R.id.login_register);
         username = findViewById(R.id.login_username);
@@ -32,6 +36,39 @@ public class MainActivity extends AppCompatActivity {
 
         //TODO avoid any hardcode
         //TODO work on back functionalities
+
+        logInButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //TODO check for errors
+                String enteredUsername = username.getText().toString();
+                String enteredPassword = password.getText().toString();
+                if(!databaseHelper.isSeller(enteredUsername) && !databaseHelper.isBuyer(enteredUsername))
+                    error.setText("There is no user with this username.");
+                else if(databaseHelper.isSeller(enteredUsername)){
+                    Integer sellerID;
+                    sellerID = databaseHelper.logInSeller(enteredUsername, enteredPassword);
+                    if(sellerID == 0)
+                        error.setText("The password in incorrect.");
+                    else{
+                        Intent sellerIntent = new Intent(MainActivity.this, SellerActivity.class);
+                        sellerIntent.putExtra("sellerID", sellerID);
+                        startActivity(sellerIntent);
+                    }
+                }
+                else if(databaseHelper.isBuyer(enteredUsername)){
+                    Integer buyerID;
+                    buyerID = databaseHelper.logInBuyer(enteredUsername, enteredPassword);
+                    if(buyerID == 0)
+                        error.setText("The password in incorrect.");
+                    else{
+                        Intent buyerIntent = new Intent(MainActivity.this, BuyerActivity.class);
+                        buyerIntent.putExtra("buyerID", buyerID);
+                        startActivity(buyerIntent);
+                    }
+                }
+            }
+        });
 
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
