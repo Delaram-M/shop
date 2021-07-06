@@ -37,7 +37,7 @@ public class RegisterActivity extends AppCompatActivity {
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(RegisterActivity.this.phoneNumber.length() == 0)
+                if(RegisterActivity.this.phoneNumber.getText().length() == 0)
                     error.setText(R.string.enter_phone_number);
                 else {
                     String username = RegisterActivity.this.username.getText().toString().trim();

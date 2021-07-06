@@ -30,4 +30,7 @@
     <string name="enter_password">Enter password!</string>
     <string name="username_exists">This username already exists</string>
     <string name="fill_fields">Fill the fields!</string>
+    <string name="enter_price">Enter price!</string>
+    <string name="enter_name">Enter name!</string>
+    <string name="add_image">Add image!</string>
 </resources>

@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -12,6 +13,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
 
 public class AddProductActivity extends AppCompatActivity {
 
@@ -22,6 +25,7 @@ public class AddProductActivity extends AppCompatActivity {
     private Uri imageURI;
     private EditText name;
     private EditText price;
+    private TextView error;
 
     private Spinner spinner;
     private ImageView imageView;
@@ -38,6 +42,7 @@ public class AddProductActivity extends AppCompatActivity {
 
         name = findViewById(R.id.add_name);
         price = findViewById(R.id.add_price);
+        error = findViewById(R.id.add_error);
 
 
         DatabaseHelper databaseHelper = new DatabaseHelper(this);
@@ -72,9 +77,20 @@ public class AddProductActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //TODO check for errors
-                String name = AddProductActivity.this.name.getText().toString().trim();
-                Double price = Double.valueOf(AddProductActivity.this.price.getText().toString().trim());
-                databaseHelper.addProduct(categoryID,sellerID,name,price,imageURI);
+                if(AddProductActivity.this.price.getText().length() == 0)
+                    error.setText(R.string.enter_price);
+                else {
+                    String name = AddProductActivity.this.name.getText().toString().trim();
+                    Double price = Double.valueOf(AddProductActivity.this.price.getText().toString().trim());
+                    if(name.equals(""))
+                        error.setText(R.string.enter_name);
+                    else if(imageURI == null)
+                        error.setText(R.string.add_image);
+                    else {
+                        databaseHelper.addProduct(categoryID, sellerID, name, price, imageURI);
+                        error.setText("");
+                    }
+                }
             }
         });
 

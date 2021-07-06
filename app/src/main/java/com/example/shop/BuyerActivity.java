@@ -16,6 +16,8 @@ import java.util.ArrayList;
 
 public class BuyerActivity extends AppCompatActivity {
 
+    //  TODO    call permissions
+
     private Integer buyerID;
 
     private RecyclerView recyclerView;
