@@ -57,7 +57,7 @@
         android:background="@color/secondary_color"
         android:ems="10"
         android:hint="@string/phone_number"
-        android:inputType="number"
+        android:inputType="phone"
         android:maxLength="20"
         android:maxLines="1"
         android:padding="5dp"
