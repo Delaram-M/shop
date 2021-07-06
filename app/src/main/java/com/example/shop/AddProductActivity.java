@@ -76,7 +76,6 @@ public class AddProductActivity extends AppCompatActivity {
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO check for errors
                 if(AddProductActivity.this.price.getText().length() == 0)
                     error.setText(R.string.enter_price);
                 else {

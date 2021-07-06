@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.style.UpdateAppearance;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -14,6 +15,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 public class DeleteUpdateProductActivity extends AppCompatActivity {
 
@@ -28,6 +30,7 @@ public class DeleteUpdateProductActivity extends AppCompatActivity {
 
     private EditText name;
     private EditText price;
+    private TextView error;
 
     private DatabaseHelper databaseHelper;
     private Spinner spinner;
@@ -53,6 +56,7 @@ public class DeleteUpdateProductActivity extends AppCompatActivity {
 
         name = findViewById(R.id.update_delete_name);
         price = findViewById(R.id.update_delete_price);
+        error = findViewById(R.id.update_delete_error);
 
         name.setText(productName);
         price.setText(String.valueOf(productPrice));
@@ -90,10 +94,20 @@ public class DeleteUpdateProductActivity extends AppCompatActivity {
         updateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                productName = name.getText().toString().trim();
-                productPrice = Double.valueOf(price.getText().toString().trim());
-                databaseHelper.updateProduct(productID, categoryID, sellerID, productName,
-                        productPrice, imageURI);
+                if(DeleteUpdateProductActivity.this.price.getText().length() == 0)
+                    error.setText(R.string.enter_price);
+                else {
+                    String name = DeleteUpdateProductActivity.this.name.getText().toString().trim();
+                    Double price = Double.valueOf(DeleteUpdateProductActivity.this.price.getText().toString().trim());
+                    if(name.equals(""))
+                        error.setText(R.string.enter_name);
+                    else if(imageURI == null)
+                        error.setText(R.string.add_image);
+                    else {
+                        databaseHelper.updateProduct(productID, categoryID, sellerID, name, price, imageURI);
+                        error.setText("");
+                    }
+                }
             }
         });
 

@@ -60,6 +60,16 @@
         app:layout_constraintTop_toBottomOf="@+id/update_delete_category"
         app:srcCompat="@drawable/ic_add_photo" />
 
+    <TextView
+        android:id="@+id/update_delete_error"
+        android:layout_width="275dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:textColor="@color/error_color"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/update_delete_image" />
+
     <Button
         android:id="@+id/update_delete_update"
         android:layout_width="170dp"
