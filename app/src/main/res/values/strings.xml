@@ -1,3 +1,28 @@
 <resources>
     <string name="app_name">Shop</string>
+    <string name="no_user">There is no user with this username.</string>
+    <string name="incorrect_password">The password in incorrect.</string>
+    <string name="name">name</string>
+    <string name="price">price($)</string>
+    <string name="add_product">add product</string>
+    <string name="update_product">update product</string>
+    <string name="delete_product">delete product</string>
+    <string name="log_in">log in</string>
+    <string name="not_have_an_account_yet">Don\'t have an account yet?</string>
+    <string name="register_guidelines">Your password and username can have a maximum length of 20 character.\nFeel free to use any character.\nDon\'t forget to choose your role.</string>
+    <string name="username">username</string>
+    <string name="password">password</string>
+    <string name="register">register</string>
+    <string name="name_">Name :</string>
+    <string name="product_name">product name</string>
+    <string name="category_">Category :</string>
+    <string name="product_category">product category</string>
+    <string name="price_">Price ($) :</string>
+    <string name="product_price">product price</string>
+    <string name="seller_">Seller :</string>
+    <string name="product_seller">product seller</string>
+    <string name="phone_number">phone number</string>
+    <string name="seller">seller</string>
+    <string name="price_no_dollar">price</string>
+    <string name="category">category</string>
 </resources>

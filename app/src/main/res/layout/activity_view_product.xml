@@ -23,7 +23,7 @@
         android:layout_marginStart="60dp"
         android:layout_marginTop="40dp"
         android:background="@color/primary_dark_color"
-        android:text="Name : "
+        android:text="@string/name_"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/product_view_image" />
 
@@ -34,7 +34,7 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="40dp"
         android:background="@color/primary_light_color"
-        android:text="product name"
+        android:text="@string/product_name"
         app:layout_constraintStart_toEndOf="@+id/product_view_name_word"
         app:layout_constraintTop_toBottomOf="@+id/product_view_image" />
 
@@ -45,7 +45,7 @@
         android:layout_marginStart="60dp"
         android:layout_marginTop="24dp"
         android:background="@color/primary_dark_color"
-        android:text="Category : "
+        android:text="@string/category_"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/product_view_name_word" />
 
@@ -57,7 +57,7 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
         android:background="@color/primary_light_color"
-        android:text="product category"
+        android:text="@string/product_category"
         app:layout_constraintStart_toEndOf="@+id/product_view_category_word"
         app:layout_constraintTop_toBottomOf="@+id/product_view_name" />
 
@@ -68,7 +68,7 @@
         android:layout_marginStart="60dp"
         android:layout_marginTop="24dp"
         android:background="@color/primary_dark_color"
-        android:text="Price ($) : "
+        android:text="@string/price_"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/product_view_category_word" />
 
@@ -79,7 +79,7 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
         android:background="@color/primary_light_color"
-        android:text="product price"
+        android:text="@string/product_price"
         app:layout_constraintStart_toEndOf="@+id/product_view_price_word"
         app:layout_constraintTop_toBottomOf="@+id/product_view_category" />
 
@@ -90,7 +90,7 @@
         android:layout_marginStart="60dp"
         android:layout_marginTop="24dp"
         android:background="@color/primary_dark_color"
-        android:text="Seller : "
+        android:text="@string/seller_"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/product_view_price_word" />
 
@@ -101,7 +101,7 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
         android:background="@color/primary_light_color"
-        android:text="prodcut seller"
+        android:text="@string/prodcut_seller"
         app:layout_constraintStart_toEndOf="@+id/product_view_seller_word"
         app:layout_constraintTop_toBottomOf="@+id/product_view_price" />
 
@@ -110,7 +110,7 @@
         android:layout_width="150dp"
         android:layout_height="35dp"
         android:layout_marginTop="28dp"
-        android:text="phone number"
+        android:text="@string/phone_number"
         android:textSize="8sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.613"

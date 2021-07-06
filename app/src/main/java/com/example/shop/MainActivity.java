@@ -44,12 +44,12 @@ public class MainActivity extends AppCompatActivity {
                 String enteredUsername = username.getText().toString();
                 String enteredPassword = password.getText().toString();
                 if(!databaseHelper.isSeller(enteredUsername) && !databaseHelper.isBuyer(enteredUsername))
-                    error.setText("There is no user with this username.");
+                    error.setText(R.string.no_user);
                 else if(databaseHelper.isSeller(enteredUsername)){
                     Integer sellerID;
                     sellerID = databaseHelper.logInSeller(enteredUsername, enteredPassword);
                     if(sellerID == 0)
-                        error.setText("The password in incorrect.");
+                        error.setText(R.string.incorrect_password);
                     else{
                         Intent sellerIntent = new Intent(MainActivity.this, SellerActivity.class);
                         sellerIntent.putExtra("sellerID", sellerID);
@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
                     Integer buyerID;
                     buyerID = databaseHelper.logInBuyer(enteredUsername, enteredPassword);
                     if(buyerID == 0)
-                        error.setText("The password in incorrect.");
+                        error.setText(R.string.incorrect_password);
                     else{
                         Intent buyerIntent = new Intent(MainActivity.this, BuyerActivity.class);
                         buyerIntent.putExtra("buyerID", buyerID);
