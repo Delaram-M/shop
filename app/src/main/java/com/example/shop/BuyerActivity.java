@@ -137,7 +137,7 @@ public class BuyerActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
         Intent backIntent = new Intent(BuyerActivity.this, MainActivity.class);
+        startActivity(backIntent);
     }
 }

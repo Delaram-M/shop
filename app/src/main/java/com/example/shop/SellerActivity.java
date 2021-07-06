@@ -103,7 +103,6 @@ public class SellerActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
         Intent backIntent = new Intent(SellerActivity.this, MainActivity.class);
         startActivity(backIntent);
     }

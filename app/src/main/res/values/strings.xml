@@ -25,4 +25,9 @@
     <string name="seller">seller</string>
     <string name="price_no_dollar">price</string>
     <string name="category">category</string>
+    <string name="enter_phone_number">Enter phone number!</string>
+    <string name="enter_username">Enter username!</string>
+    <string name="enter_password">Enter password!</string>
+    <string name="username_exists">This username already exists</string>
+    <string name="fill_fields">Fill the fields!</string>
 </resources>

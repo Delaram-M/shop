@@ -12,8 +12,6 @@ import android.widget.TextView;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    //TODO add private/public access modifiers
-
     private EditText username;
     private EditText password;
     private EditText phoneNumber;
@@ -39,23 +37,31 @@ public class RegisterActivity extends AppCompatActivity {
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                //TODO check for errors
-
-                String username = RegisterActivity.this.username.getText().toString().trim();
-                String password = RegisterActivity.this.password.getText().toString().trim();
-                Integer phoneNumber = Integer.parseInt(RegisterActivity.this.phoneNumber.getText().toString());
-                if(!roleSwitch.isChecked()) {
-                    databaseHelper.addBuyer(username, password, phoneNumber);
-                    Intent intent = new Intent(RegisterActivity.this, BuyerActivity.class);
-                    intent.putExtra("buyerID", databaseHelper.getBuyerID(username));
-                    startActivity(intent);
-                }
-                else{
-                    databaseHelper.addSeller(username, password, phoneNumber);
-                    Intent intent = new Intent(RegisterActivity.this, SellerActivity.class);
-                    intent.putExtra("sellerID", databaseHelper.getSellerID(username));
-                    startActivity(intent);
+                if(RegisterActivity.this.phoneNumber.length() == 0)
+                    error.setText(R.string.enter_phone_number);
+                else {
+                    String username = RegisterActivity.this.username.getText().toString().trim();
+                    String password = RegisterActivity.this.password.getText().toString().trim();
+                    Integer phoneNumber = Integer.parseInt(RegisterActivity.this.phoneNumber.getText().toString());
+                    if (username.equals(""))
+                        error.setText(R.string.enter_username);
+                    else if (password.equals(""))
+                        error.setText(R.string.enter_password);
+                    else if(databaseHelper.isSeller(username) || databaseHelper.isBuyer(username))
+                        error.setText(R.string.username_exists);
+                    else {
+                        if (!roleSwitch.isChecked()) {
+                            databaseHelper.addBuyer(username, password, phoneNumber);
+                            Intent intent = new Intent(RegisterActivity.this, BuyerActivity.class);
+                            intent.putExtra("buyerID", databaseHelper.getBuyerID(username));
+                            startActivity(intent);
+                        } else {
+                            databaseHelper.addSeller(username, password, phoneNumber);
+                            Intent intent = new Intent(RegisterActivity.this, SellerActivity.class);
+                            intent.putExtra("sellerID", databaseHelper.getSellerID(username));
+                            startActivity(intent);
+                        }
+                    }
                 }
 
             }
