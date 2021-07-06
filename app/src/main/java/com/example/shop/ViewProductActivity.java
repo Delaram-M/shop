@@ -13,21 +13,21 @@ import android.widget.TextView;
 public class ViewProductActivity extends AppCompatActivity {
 
 
-    Integer productID;
-    Integer sellerID;
-    Integer categoryID;
-    Uri imageURI;
-    String productName;
-    Double productPrice;
+    private Integer productID;
+    private Integer sellerID;
+    private Integer categoryID;
+    private Uri imageURI;
+    private String productName;
+    private Double productPrice;
 
-    DatabaseHelper databaseHelper;
+    private DatabaseHelper databaseHelper;
 
-    ImageView imageView;
-    TextView name;
-    TextView category;
-    TextView price;
-    TextView sellerUsername;
-    Button sellerPhoneNumber;
+    private ImageView imageView;
+    private TextView name;
+    private TextView category;
+    private TextView price;
+    private TextView sellerUsername;
+    private Button sellerPhoneNumber;
 
 
     @Override

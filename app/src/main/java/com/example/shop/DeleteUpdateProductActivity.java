@@ -19,21 +19,21 @@ public class DeleteUpdateProductActivity extends AppCompatActivity {
 
     int SELECT_PICTURE = 200;
 
-    Integer productID;
-    Integer sellerID;
-    Integer categoryID;
-    Uri imageURI;
-    String productName;
-    Double productPrice;
+    private Integer productID;
+    private Integer sellerID;
+    private Integer categoryID;
+    private Uri imageURI;
+    private String productName;
+    private Double productPrice;
 
-    EditText name;
-    EditText price;
+    private EditText name;
+    private EditText price;
 
-    DatabaseHelper databaseHelper;
-    Spinner spinner;
-    ImageView imageView;
-    Button updateButton;
-    Button deleteButton;
+    private DatabaseHelper databaseHelper;
+    private Spinner spinner;
+    private ImageView imageView;
+    private Button updateButton;
+    private Button deleteButton;
 
 
     @Override

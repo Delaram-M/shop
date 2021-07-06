@@ -14,12 +14,12 @@ public class RegisterActivity extends AppCompatActivity {
 
     //TODO add private/public access modifiers
 
-    EditText username;
-    EditText password;
-    EditText phoneNumber;
-    Switch roleSwitch;
-    TextView error;
-    Button registerButton;
+    private EditText username;
+    private EditText password;
+    private EditText phoneNumber;
+    private Switch roleSwitch;
+    private TextView error;
+    private Button registerButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

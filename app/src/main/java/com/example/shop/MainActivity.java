@@ -11,13 +11,13 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
-    EditText username;
-    EditText password;
-    Button logInButton;
-    TextView error;
-    Button registerButton;
+    private EditText username;
+    private EditText password;
+    private Button logInButton;
+    private TextView error;
+    private Button registerButton;
 
-    DatabaseHelper databaseHelper;
+    private DatabaseHelper databaseHelper;
 
 
     @Override

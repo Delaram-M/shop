@@ -15,17 +15,17 @@ import android.widget.Spinner;
 
 public class AddProductActivity extends AppCompatActivity {
 
-    int SELECT_PICTURE = 200;
+    private int SELECT_PICTURE = 200;
 
-    Integer sellerID;
-    Integer categoryID;
-    Uri imageURI;
-    EditText name;
-    EditText price;
+    private Integer sellerID;
+    private Integer categoryID;
+    private Uri imageURI;
+    private EditText name;
+    private EditText price;
 
-    Spinner spinner;
-    ImageView imageView;
-    Button addButton;
+    private Spinner spinner;
+    private ImageView imageView;
+    private Button addButton;
 
 
     @Override
