@@ -34,13 +34,10 @@ public class MainActivity extends AppCompatActivity {
         error = findViewById(R.id.login_error);
         logInButton = findViewById(R.id.login_login);
 
-        //TODO avoid any hardcode
-        //TODO work on back functionalities
-
         logInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO check for errors
+                //TODO practise fragments in admin
                 String enteredUsername = username.getText().toString();
                 String enteredPassword = password.getText().toString();
                 if(!databaseHelper.isSeller(enteredUsername) && !databaseHelper.isBuyer(enteredUsername))

@@ -101,7 +101,7 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
         android:background="@color/primary_light_color"
-        android:text="@string/prodcut_seller"
+        android:text="@string/product_seller"
         app:layout_constraintStart_toEndOf="@+id/product_view_seller_word"
         app:layout_constraintTop_toBottomOf="@+id/product_view_price" />
 
