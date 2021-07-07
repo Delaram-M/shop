@@ -1,14 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".BuyerActivity"
-    android:id="@+id/linearLayout">
+    tools:context=".BuyerActivity">
 
+    <Button
+        android:id="@+id/buyer_highest_to_lowest"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="sort based on highest to lowest price" />
+
+    <Button
+        android:id="@+id/buyer_lowest_to_highest"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="sort based on lowest to highest price" />
 
     <SearchView
         android:id="@+id/buyer_search"
@@ -22,9 +32,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:layout_conversion_absoluteHeight="777dp"
-        tools:layout_editor_absoluteY="52dp"
+        tools:layout_conversion_absoluteWidth="393dp"
         tools:layout_editor_absoluteX="0dp"
-        tools:layout_conversion_absoluteWidth="393dp" />
+        tools:layout_editor_absoluteY="52dp" />
 
 
 </LinearLayout>

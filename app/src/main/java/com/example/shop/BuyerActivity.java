@@ -9,6 +9,7 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.SearchView;
 
@@ -30,6 +31,9 @@ public class BuyerActivity extends AppCompatActivity {
     private ArrayList<String> productSellerUsernames;
 
     private SearchView searchView;
+    private Button sortAscending;
+    private Button sortDescending;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +44,8 @@ public class BuyerActivity extends AppCompatActivity {
         buyerID = intent.getIntExtra("buyerID", 0);
 
         recyclerView = findViewById(R.id.buyer_list);
+        sortDescending = findViewById(R.id.buyer_highest_to_lowest);
+        sortAscending = findViewById(R.id.buyer_lowest_to_highest);
 
         databaseHelper = new DatabaseHelper(this);
         productsCursor = databaseHelper.getAllProducts();
@@ -51,22 +57,43 @@ public class BuyerActivity extends AppCompatActivity {
         productPrices = new ArrayList<>();
         productSellerUsernames = new ArrayList<>();
 
-        storeProductsData();
-
-        buyerAdapter = new BuyerAdapter(BuyerActivity.this, productIDs, productImageURIs, productNames,
-                productCategories, productPrices,productSellerUsernames);
-        recyclerView.setAdapter(buyerAdapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager((BuyerActivity.this)));
-
+        setUpRecyclerView();
         setUpSearch();
+
+        sortDescending.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                productsCursor = databaseHelper.getAllProductsDescending();
+                setUpRecyclerView();
+            }
+        });
+
+        sortAscending.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                productsCursor = databaseHelper.getAllProductsAscending();
+                setUpRecyclerView();
+            }
+        });
 
 
 
     }
 
 
-
-
+    private void setUpRecyclerView(){
+        productIDs.clear();
+        productImageURIs.clear();
+        productNames.clear();
+        productCategories.clear();
+        productPrices.clear();
+        productSellerUsernames.clear();
+        storeProductsData();
+        buyerAdapter = new BuyerAdapter(BuyerActivity.this, productIDs, productImageURIs, productNames,
+                productCategories, productPrices,productSellerUsernames);
+        recyclerView.setAdapter(buyerAdapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager((BuyerActivity.this)));
+    }
 
 
 
@@ -140,4 +167,14 @@ public class BuyerActivity extends AppCompatActivity {
         Intent backIntent = new Intent(BuyerActivity.this, MainActivity.class);
         startActivity(backIntent);
     }
+
+
+
+
+
+
+
+
+
+
 }

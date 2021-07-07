@@ -266,6 +266,24 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return cursor;
     }
 
+    public Cursor getAllProductsDescending(){
+        Cursor cursor;
+        SQLiteDatabase database = this.getReadableDatabase();
+
+        String query = "SELECT * FROM product ORDER BY price DESC";
+        cursor = database.rawQuery(query, null);
+        return cursor;
+    }
+
+    public Cursor getAllProductsAscending(){
+        Cursor cursor;
+        SQLiteDatabase database = this.getReadableDatabase();
+
+        String query = "SELECT * FROM product ORDER BY price ASC";
+        cursor = database.rawQuery(query, null);
+        return cursor;
+    }
+
 
     public boolean isSeller(String username){
         SQLiteDatabase database = this.getReadableDatabase();
