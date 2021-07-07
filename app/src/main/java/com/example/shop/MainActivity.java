@@ -37,7 +37,6 @@ public class MainActivity extends AppCompatActivity {
         logInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO practise fragments in admin
                 String enteredUsername = username.getText().toString();
                 String enteredPassword = password.getText().toString();
                 if(enteredUsername.equals("") || enteredPassword.equals(""))
