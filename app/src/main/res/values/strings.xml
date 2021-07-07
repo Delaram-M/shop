@@ -13,13 +13,13 @@
     <string name="username">username</string>
     <string name="password">password</string>
     <string name="register">register</string>
-    <string name="name_">Name :</string>
+    <string name="name_">Name:</string>
     <string name="product_name">product name</string>
-    <string name="category_">Category :</string>
+    <string name="category_">Category:</string>
     <string name="product_category">product category</string>
-    <string name="price_">Price ($) :</string>
+    <string name="price_">Price($):</string>
     <string name="product_price">product price</string>
-    <string name="seller_">Seller :</string>
+    <string name="seller_">Seller:</string>
     <string name="product_seller">product seller</string>
     <string name="phone_number">phone number</string>
     <string name="seller">seller</string>

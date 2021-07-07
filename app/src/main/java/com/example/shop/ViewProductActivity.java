@@ -66,7 +66,7 @@ public class ViewProductActivity extends AppCompatActivity {
         category.setText(databaseHelper.getCategoryName(categoryID));
         price.setText(String.valueOf(productPrice));
         sellerUsername.setText(databaseHelper.getSellerUsername(sellerID));
-        sellerPhoneNumber.setText(databaseHelper.getSellerPhoneNumber(sellerID));
+        sellerPhoneNumber.setText("call " + databaseHelper.getSellerPhoneNumber(sellerID));
 
 
         //permission request
