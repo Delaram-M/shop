@@ -1,10 +1,14 @@
 package com.example.shop;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Messenger;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -15,6 +19,8 @@ import android.widget.SimpleCursorAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import static java.security.AccessController.getContext;
 
 public class AddProductActivity extends AppCompatActivity {
 
@@ -63,10 +69,11 @@ public class AddProductActivity extends AppCompatActivity {
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent imageIntent= new Intent();
+                Intent imageIntent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+                imageIntent.addCategory(Intent.CATEGORY_OPENABLE);
                 imageIntent.setType("image/*");
-                imageIntent.setAction(Intent.ACTION_GET_CONTENT);
-                startActivityForResult(Intent.createChooser(imageIntent, "Select Picture"), SELECT_PICTURE);
+                startActivityForResult(Intent.createChooser(imageIntent, "Select Picture"),
+                        SELECT_PICTURE);
             }
         });
 
@@ -93,9 +100,7 @@ public class AddProductActivity extends AppCompatActivity {
             }
         });
 
-
     }
-
 
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -117,6 +122,8 @@ public class AddProductActivity extends AppCompatActivity {
         backIntent.putExtra("sellerID", sellerID);
         startActivity(backIntent);
     }
+
+
 
 
 }

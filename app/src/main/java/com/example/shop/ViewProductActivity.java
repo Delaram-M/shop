@@ -61,8 +61,7 @@ public class ViewProductActivity extends AppCompatActivity {
         sellerUsername = findViewById(R.id.product_view_seller_username);
         sellerPhoneNumber = findViewById(R.id.product_view_phone_number);
 
-        //TODO image access
-        //imageView.setImageURI(imageURI);
+        imageView.setImageURI(imageURI);
         name.setText(productName);
         category.setText(databaseHelper.getCategoryName(categoryID));
         price.setText(String.valueOf(productPrice));
@@ -127,4 +126,14 @@ public class ViewProductActivity extends AppCompatActivity {
             Toast.makeText(this, "permission denied", Toast.LENGTH_SHORT).show();
         }
     }
+
+
+
+
+
+
+
+
+
+
 }

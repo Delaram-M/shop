@@ -96,8 +96,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
 
         // Get element from your dataset at this position and replace the
         // contents of the view with that element
-        //TODO image uri
-        //viewHolder.image.setImageURI(productImageURIs.get(position));
+        viewHolder.image.setImageURI(productImageURIs.get(position));
         viewHolder.name.setText(productNames.get(position));
         viewHolder.category.setText(productCategories.get(position));
         viewHolder.price.setText(String.valueOf(productPrices.get(position)) + " $");

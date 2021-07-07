@@ -76,8 +76,7 @@ public class DeleteUpdateProductActivity extends AppCompatActivity {
 
 
         imageView = findViewById(R.id.update_delete_image);
-        //TODO uri
-        //imageView.setImageURI(imageURI);
+        imageView.setImageURI(imageURI);
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
