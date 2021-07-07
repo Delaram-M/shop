@@ -42,7 +42,7 @@ public class RegisterActivity extends AppCompatActivity {
                 else {
                     String username = RegisterActivity.this.username.getText().toString().trim();
                     String password = RegisterActivity.this.password.getText().toString().trim();
-                    Integer phoneNumber = Integer.parseInt(RegisterActivity.this.phoneNumber.getText().toString());
+                    String phoneNumber = RegisterActivity.this.phoneNumber.getText().toString().trim();
                     if (username.equals(""))
                         error.setText(R.string.enter_username);
                     else if (password.equals(""))

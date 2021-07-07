@@ -30,14 +30,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 +"buyer_ID INTEGER PRIMARY KEY AUTOINCREMENT, "
                 +"username TEXT, "
                 +"password TEXT, "
-                +"phone_number INTEGER);";
+                +"phone_number TEXT);";
         database.execSQL(query);
 
         query = "CREATE TABLE seller ("
                 +"seller_ID INTEGER PRIMARY KEY AUTOINCREMENT, "
                 +"username TEXT, "
                 +"password TEXT, "
-                +"phone_number INTEGER);";
+                +"phone_number TEXT);";
         database.execSQL(query);
 
         query = "CREATE TABLE product ("
@@ -93,7 +93,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
 
-    public void addBuyer(String username, String password, Integer phoneNumber){
+    public void addBuyer(String username, String password, String phoneNumber){
         SQLiteDatabase database = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("username", username);
@@ -106,7 +106,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             Toast.makeText(context, "buyer registered successfully", Toast.LENGTH_LONG).show();
     }
 
-    public void addSeller(String username, String password, Integer phoneNumber){
+    public void addSeller(String username, String password, String phoneNumber){
         SQLiteDatabase database = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("username", username);
@@ -203,12 +203,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return sellerUsername;
     }
 
-    public Integer getSellerPhoneNumber(Integer sellerID){
+    public String getSellerPhoneNumber(Integer sellerID){
         SQLiteDatabase database = this.getReadableDatabase();
         String query = "SELECT * FROM seller WHERE seller_ID = " + "'" + sellerID + "';";
         Cursor cursor = database.rawQuery(query, null);
         cursor.moveToFirst();
-        Integer sellerPhoneNumber = cursor.getInt(3);
+        String sellerPhoneNumber = cursor.getString(3);
         cursor.close();
         return sellerPhoneNumber;
     }
