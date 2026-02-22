@@ -1,5 +1,6 @@
-# shop
-Android shopping application
+# Shop Application
+This project is an Android shopping application for both sellers and buyers.
 
-## ERD Diagram
+## ER Diagram
+
 ![ERD diagram](shop-database-erd.png)
