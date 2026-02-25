@@ -1,5 +1,5 @@
 # Shop Application
-This project is an Android shopping application for both sellers and buyers.
+This project is an Android shopping application.
 
 ## ER Diagram
 
